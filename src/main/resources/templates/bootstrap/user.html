@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>USER INFORMATION</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div th:include="bootstrap/navbar"></div>
+<div class="container-fluid p-0">
+    <div class="d-flex align-items-start">
+        <div class="col col-2 bg-white vh-100 text-center">
+            <div class="nav flex-column nav-pills bg-white">
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="nav-link"
+                       href="/admin"
+                       th:classappend="${#httpServletRequest.requestURI.endsWith('admin')} ? 'active' : ''">Admin</a>
+                </div>
+                <a class="nav-link"
+                   href="/user"
+                   th:classappend="${#httpServletRequest.requestURI.endsWith('user')} ? 'active' : ''">User</a>
+            </div>
+        </div>
+        <div class="col mx-auto p-4">
+            <div class="tab-content">
+                <div class="tab-pane fade show active">
+                    <div><h1>USER INFORMATION</h1></div>
+                    <div class="card">
+                        <h5 class="card-header">About you</h5>
+                        <div class="card-block p-3">
+                            <table class="table table-striped mx-auto">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:object="${autUser}">
+                                    <td th:text="*{id}">id</td>
+                                    <td th:text="*{name}">name</td>
+                                    <td th:text="*{surname}">surname</td>
+                                    <td th:text="*{age}">age</td>
+                                    <td th:text="*{email}">email</td>
+                                    <td>
+                                        <span th:text="${#strings.listJoin(autUser.getRoleTitles(), ', ')}">role</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
