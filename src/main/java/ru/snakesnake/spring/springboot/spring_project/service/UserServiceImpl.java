@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl {
 
     @Autowired
     private UserRepository userRepository;
@@ -47,11 +47,5 @@ public class UserServiceImpl implements UserDetailsService {
 
     public void deleteUserById(long id) {
         userRepository.deleteById(id);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        return user;
     }
 }
