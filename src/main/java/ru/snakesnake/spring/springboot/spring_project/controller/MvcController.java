@@ -1,14 +1,9 @@
-package ru.snakesnake.spring.springboot.spring_project.controllers;
+package ru.snakesnake.spring.springboot.spring_project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.snakesnake.spring.springboot.spring_project.model.Role;
 import ru.snakesnake.spring.springboot.spring_project.model.User;
 import ru.snakesnake.spring.springboot.spring_project.service.RoleServiceImpl;
@@ -18,14 +13,12 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 @Controller
 @RequestMapping("/")
-public class CommonController {
+public class MvcController {
 
     @Autowired
     private UserServiceImpl userService;
